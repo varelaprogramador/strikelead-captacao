@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     canonical: './',
   },
   other: {
-    'facebook-domain-verification': 'km32fy8vbtyi36nqamc0nbqzp5r2xy',
+    'facebook-domain-verification': '6jw96kz1oi3376orw13h3d39lmp0ue',
   },
 }
 
