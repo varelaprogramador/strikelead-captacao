@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: './',
   },
+  other: {
+    'facebook-domain-verification': 'km32fy8vbtyi36nqamc0nbqzp5r2xy',
+  },
 }
 
 const sora = Sora({ subsets: ['latin'] })
