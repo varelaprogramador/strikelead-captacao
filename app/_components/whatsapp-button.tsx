@@ -1,13 +1,41 @@
+'use client'
+
 import Link from 'next/link'
+import { nanoid } from 'nanoid'
+
+import { facebookPixelEvent } from '@/lib/utils'
+import { sendFacebookTracking } from '@/features/utils/actions'
 
 interface WhatsAppButtonProps {
   title: string
 }
 
 export const WhatsappButton = ({ title }: WhatsAppButtonProps) => {
+  const onClick = () => {
+    const eventId = nanoid()
+
+    facebookPixelEvent({
+      eventId,
+      eventName: 'Lead',
+      trackType: 'track',
+      extraData: {
+        content_name: 'Entrar no grupo do WhatsApp',
+      },
+    })
+
+    sendFacebookTracking({
+      eventId,
+      eventName: 'Lead',
+      extraData: {
+        content_name: 'Formulário Enviado',
+      },
+    })
+  }
+
   return (
     <Link
       title={title}
+      onClick={onClick}
       id="whatsapp-button"
       referrerPolicy="no-referrer"
       rel="noopener noreferrer nofollow"
