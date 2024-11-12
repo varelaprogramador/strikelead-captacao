@@ -1,19 +1,23 @@
 'use client'
 
 import { z } from 'zod'
-import axios from 'axios'
 import Image from 'next/image'
-import { toast } from 'sonner'
-import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import logo from '@/public/logo.svg'
+import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { PhoneInput } from '@/components/phone-input'
-import { useCreateLeadModal } from '@/hooks/use-create-lead-modal'
+import { useCreateSpotLead } from '../api/use-create-spot-lead'
+import { useOpenCreateSpotLeadSheet } from '../hooks/use-open-create-spot-lead-sheet'
+
+import {
+  createSpotLeadSchema,
+  defaultSpotLeadValues,
+} from '@/features/spot-leads/schemas'
 
 import {
   Dialog,
@@ -32,21 +36,16 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 
-const schema = z.object({
-  phone: z.string().trim().min(10, 'Número de telefone inválido'),
-})
-
-export const LeadModal = () => {
+export const CreateSpotLeadSheet = () => {
   const router = useRouter()
-  const { isOpen, onClose } = useCreateLeadModal()
-  const [isPending, setIsPending] = useState(false)
+  const { isOpen, onClose } = useOpenCreateSpotLeadSheet()
 
-  const form = useForm<z.infer<typeof schema>>({
+  const { mutate, isPending } = useCreateSpotLead()
+
+  const form = useForm<z.infer<typeof createSpotLeadSchema>>({
     disabled: isPending,
-    resolver: zodResolver(schema),
-    defaultValues: {
-      phone: '',
-    },
+    defaultValues: defaultSpotLeadValues,
+    resolver: zodResolver(createSpotLeadSchema),
   })
 
   const handleClose = () => {
@@ -54,32 +53,18 @@ export const LeadModal = () => {
     form.reset()
   }
 
-  const onSubmit = form.handleSubmit(async (values: z.infer<typeof schema>) => {
-    if (isPending) return
+  const onSubmit = form.handleSubmit(
+    (values: z.infer<typeof createSpotLeadSchema>) => {
+      if (isPending) return
 
-    try {
-      setIsPending(true)
-      const { status } = await axios.post(
-        'https://api-spotform.up.railway.app/spot-leads/create-v2',
-        {
-          phone: values.phone,
-          origin: 'Captação | Spotform',
-          website: 'https://chat.whatsapp.com/JuvK0tQmvgM5KAvr12fmMu',
+      mutate(values, {
+        onSuccess: () => {
+          router.push('/redirect')
+          form.reset()
         },
-      )
-
-      if (status !== 201) {
-        throw new Error('Erro ao enviar formulário')
-      }
-
-      toast.success('Formulário enviado com sucesso! Você será redirecionado.')
-      router.push('/redirect')
-    } catch {
-      toast.error('Ocorreu um erro ao enviar o formulário. Tente novamente.')
-    } finally {
-      setIsPending(false)
-    }
-  })
+      })
+    },
+  )
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -103,19 +88,33 @@ export const LeadModal = () => {
         <Form {...form}>
           <form className="space-y-4" onSubmit={onSubmit}>
             <FormField
+              name="name"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nome</FormLabel>
+
+                  <FormControl>
+                    <Input {...field} placeholder="Seu nome" />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
               name="phone"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    WhatsApp <span className="text-red-500">*</span>
-                  </FormLabel>
+                  <FormLabel>WhatsApp</FormLabel>
 
                   <FormControl>
                     <PhoneInput
-                      value={field.value}
-                      onChange={field.onChange}
-                      isDisabled={field.disabled}
+                      {...field}
+                      defaultCountry="BR"
+                      placeholder="(00) 00000-0000"
                     />
                   </FormControl>
 

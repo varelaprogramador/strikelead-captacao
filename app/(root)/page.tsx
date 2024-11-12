@@ -4,17 +4,18 @@ import { IoIosCloseCircle, IoIosCheckmarkCircle } from 'react-icons/io'
 import logo from '@/public/logo.svg'
 import Video from './_components/video'
 import tagsImage from '@/public/tags.jpg'
-import { LeadModal } from './_components/lead-modal'
 import lottieForm from '@/public/lottie/lottie-form.json'
 import traqueamentoImage from '@/public/traqueamento.jpg'
 import lottieLeads from '@/public/lottie/lottie-leads.json'
 import functionalityGif from '@/public/gif/functionality.gif'
-import { WhatsappButton } from './_components/whatsapp-button'
 import { LottieAnimation } from '@/components/lottie-animation'
 import testimonial01 from '@/public/testimonials/depoimento1.png'
 import testimonial02 from '@/public/testimonials/depoimento2.png'
 import testimonial03 from '@/public/testimonials/depoimento3.png'
 import testimonial04 from '@/public/testimonials/depoimento4.png'
+import { LeadFormButton } from './_components/lead-form-button'
+import { CreateSpotLeadSheet } from '@/features/spot-leads/components/create-spot-lead-sheet'
+import { CreateSpotLeadForm } from '@/features/spot-leads/components/crate-spot-lead-form'
 
 export default function Page() {
   return (
@@ -28,7 +29,7 @@ export default function Page() {
             </strong>
           </h2>
 
-          <WhatsappButton title="Entrar no grupo vip" />
+          <LeadFormButton title="Entrar no grupo vip" />
         </div>
 
         <section className="flex flex-col items-center justify-center gap-6 bg-white px-4 py-6 text-black md:py-8">
@@ -64,7 +65,9 @@ export default function Page() {
             </ul>
           </div>
 
-          <WhatsappButton title="Entrar no grupo vip" />
+          <div className="flex items-center justify-center">
+            <CreateSpotLeadForm />
+          </div>
         </section>
 
         <section className="flex items-center justify-center bg-[#0c0c0c] px-4 py-6">
@@ -239,13 +242,11 @@ export default function Page() {
               Esse é o jeito mais FÁCIL e ECONÔMICO de apresentar
               profissionalismo aos seus clientes!
             </p>
-
-            <WhatsappButton title="Entrar no grupo vip" />
           </div>
         </section>
       </main>
 
-      <LeadModal />
+      <CreateSpotLeadSheet />
     </>
   )
 }

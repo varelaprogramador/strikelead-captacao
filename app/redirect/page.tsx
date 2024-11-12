@@ -1,46 +1,79 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
-import { permanentRedirect } from 'next/navigation'
+import { Loader2 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 import logo from '@/public/logo.svg'
 import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
+
+import {
+  Card,
+  CardTitle,
+  CardFooter,
+  CardHeader,
+  CardContent,
+  CardDescription,
+} from '@/components/ui/card'
 
 export default function Page() {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     window.location.href = 'https://chat.whatsapp.com/JuvK0tQmvgM5KAvr12fmMu'
-  //   }, 1000)
-  // }, [])
+  const [progress, setProgress] = useState(0)
 
-  return permanentRedirect('/')
+  // redirect to WhatsApp group after 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress(prev => Math.min(prev + 2, 100))
+    }, 100)
+
+    const timeout = setTimeout(() => {
+      window.location.href = 'https://chat.whatsapp.com/LSDr3QLOclGCwe20IwJrqV'
+    }, 5000)
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(timeout)
+    }
+  }, [])
 
   return (
-    <main className="bg-black gap-4 flex flex-1 items-center justify-center p-4 flex-col text-center">
+    <main className="flex flex-1 flex-col items-center justify-center gap-4 bg-black p-4">
       <Image
         priority
         src={logo}
         alt="Spotform"
         draggable={false}
-        className="pointer-events-none max-h-10 md:max-h-16 animate-pulse w-full select-none object-contain"
+        className="pointer-events-none max-h-12 w-full animate-pulse select-none object-contain"
       />
 
-      <h1 className="text-white text-xl md:text-3xl ">
-        Em instantes você será redirecionado para o nosso Grupo VIP do WhatsApp.
-      </h1>
+      <Card className="max-w-screen-sm text-center">
+        <CardHeader>
+          <CardTitle>Redirecionando...</CardTitle>
+          <CardDescription>
+            Em 5 segundos você será redirecionado para o grupo de WhatsApp.
+          </CardDescription>
+        </CardHeader>
 
-      <p className="text-white text-base md:text-lg">
-        Caso não seja redirecionado, clique no botão abaixo.
-      </p>
+        <CardContent className="flex flex-col items-center justify-center gap-2">
+          <Loader2 className="size-6 animate-spin" />
+          <Progress value={progress} max={100} />
+        </CardContent>
 
-      <Button asChild size="lg">
-        <Link
-          rel="noopener noreferrer"
-          referrerPolicy="no-referrer"
-          href="https://chat.whatsapp.com/JuvK0tQmvgM5KAvr12fmMu"
-        >
-          Entrar no Grupo VIP
-        </Link>
-      </Button>
+        {progress === 100 && (
+          <CardFooter>
+            <Button asChild size="lg" className="w-full">
+              <Link
+                rel="noopener noreferrer"
+                referrerPolicy="no-referrer"
+                href="https://chat.whatsapp.com/LSDr3QLOclGCwe20IwJrqV"
+              >
+                Entrar no Grupo VIP
+              </Link>
+            </Button>
+          </CardFooter>
+        )}
+      </Card>
     </main>
   )
 }

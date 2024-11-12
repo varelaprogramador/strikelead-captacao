@@ -6,6 +6,7 @@ import { Sora } from 'next/font/google'
 
 import { CrispChat } from '@/components/crisp'
 import { Toaster } from '@/components/ui/sonner'
+import { QueryProvider } from '@/providers/query-provider'
 
 export const metadata: Metadata = {
   title: 'Captação | SpotForm',
@@ -16,6 +17,9 @@ export const metadata: Metadata = {
   },
   other: {
     'facebook-domain-verification': '6jw96kz1oi3376orw13h3d39lmp0ue',
+  },
+  icons: {
+    icon: '/favicon.svg',
   },
 }
 
@@ -28,11 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning className={sora.className}>
-      <CrispChat />
-
-      {process.env.FACEBOOK_PIXEL_ID && (
-        <Script id="fb-pixel" strategy="afterInteractive">
-          {`
+      {process.env.FACEBOOK_PIXEL_ID &&
+        process.env.NODE_ENV === 'production' && (
+          <Script id="fb-pixel" strategy="afterInteractive">
+            {`
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -44,12 +47,15 @@ export default function RootLayout({
               fbq('init', '${process.env.FACEBOOK_PIXEL_ID}');
               fbq('track', 'PageView');
             `}
-        </Script>
-      )}
+          </Script>
+        )}
 
       <body className="antialiased min-h-dvh flex flex-col size-full overflow-x-hidden">
-        {children}
-        <Toaster richColors closeButton position="top-center" />
+        <QueryProvider>
+          <Toaster richColors closeButton position="top-center" />
+          <CrispChat />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   )
