@@ -50,7 +50,7 @@ export default function RootLayout({
           </Script>
         )}
 
-      <body className="antialiased min-h-dvh flex flex-col size-full overflow-x-hidden">
+      <body className="flex size-full min-h-dvh flex-col overflow-x-hidden antialiased">
         <QueryProvider>
           <Toaster richColors closeButton position="top-center" />
           <CrispChat />

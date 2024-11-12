@@ -9,11 +9,15 @@ import { hash } from '@/lib/utils'
 import { ipWhois } from '@/lib/ip-whois'
 
 export const sendFacebookTracking = async ({
+  name,
+  phone,
   eventId,
   extraData,
   eventName,
   testEventCode,
 }: {
+  name?: string
+  phone?: string
   eventId: string
   eventName: string
   testEventCode?: string | null
@@ -35,6 +39,10 @@ export const sendFacebookTracking = async ({
     const fbp = cookieStore.get('_fbp')?.value
     const fbc = cookieStore.get('_fbc')?.value
 
+    const firstName = name?.split(' ')[0]?.toLowerCase()?.trim()
+    const lastName = name?.split(' ')[1]?.toLowerCase()?.trim()
+    const formattedPhone = phone?.replace(/\D/g, '')?.trim()
+
     const eventData = {
       data: [
         {
@@ -48,9 +56,12 @@ export const sendFacebookTracking = async ({
             fbc,
             client_ip_address: ip,
             client_user_agent: userAgent,
+            ln: lastName ? hash(lastName) : null,
+            fn: firstName ? hash(firstName) : null,
             ct: hash(location?.city?.toLowerCase()),
             zp: hash(location?.postal?.replace(/\D/g, '')),
             st: hash(location?.region_code?.toLowerCase()),
+            ph: formattedPhone ? hash(formattedPhone) : null,
             country: hash(location?.country_code?.toLowerCase()),
           },
           custom_data: {

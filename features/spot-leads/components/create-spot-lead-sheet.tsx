@@ -2,6 +2,7 @@
 
 import { z } from 'zod'
 import Image from 'next/image'
+import { nanoid } from 'nanoid'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
@@ -10,8 +11,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import logo from '@/public/logo.svg'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { facebookPixelEvent } from '@/lib/utils'
 import { PhoneInput } from '@/components/phone-input'
 import { useCreateSpotLead } from '../api/use-create-spot-lead'
+import { sendFacebookTracking } from '@/features/utils/actions'
 import { useOpenCreateSpotLeadSheet } from '../hooks/use-open-create-spot-lead-sheet'
 
 import {
@@ -57,8 +60,23 @@ export const CreateSpotLeadSheet = () => {
     (values: z.infer<typeof createSpotLeadSchema>) => {
       if (isPending) return
 
+      const eventId = nanoid()
+
       mutate(values, {
         onSuccess: () => {
+          facebookPixelEvent({
+            eventId,
+            eventName: 'Lead',
+            trackType: 'track',
+          })
+
+          sendFacebookTracking({
+            eventId,
+            eventName: 'Lead',
+            name: values.name,
+            phone: values.phone,
+          })
+
           router.push('/redirect')
           form.reset()
         },

@@ -1,23 +1,27 @@
 'use client'
 
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
+import { nanoid } from 'nanoid'
 import { Loader2 } from 'lucide-react'
+import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { facebookPixelEvent } from '@/lib/utils'
 import { PhoneInput } from '@/components/phone-input'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { sendFacebookTracking } from '@/features/utils/actions'
 import { useCreateSpotLead } from '../api/use-create-spot-lead'
 import { createSpotLeadSchema, defaultSpotLeadValues } from '../schemas'
+
+import {
+  Card,
+  CardTitle,
+  CardHeader,
+  CardContent,
+  CardDescription,
+} from '@/components/ui/card'
 
 import {
   Form,
@@ -43,8 +47,23 @@ export const CreateSpotLeadForm = () => {
     (values: z.infer<typeof createSpotLeadSchema>) => {
       if (isPending) return
 
+      const eventId = nanoid()
+
       mutate(values, {
         onSuccess: () => {
+          facebookPixelEvent({
+            eventId,
+            eventName: 'Lead',
+            trackType: 'track',
+          })
+
+          sendFacebookTracking({
+            eventId,
+            eventName: 'Lead',
+            name: values.name,
+            phone: values.phone,
+          })
+
           router.push('/redirect')
           form.reset()
         },
