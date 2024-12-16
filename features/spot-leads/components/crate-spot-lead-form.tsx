@@ -49,12 +49,20 @@ export const CreateSpotLeadForm = () => {
 
       const eventId = nanoid()
 
+      const firstName = values.name.split(' ')[0]?.toLowerCase()?.trim()
+      const lastName = values.name.split(' ')[1]?.toLowerCase()?.trim()
+
       mutate(values, {
         onSuccess: () => {
           facebookPixelEvent({
             eventId,
             eventName: 'Lead',
             trackType: 'track',
+            extraData: {
+              fn: firstName,
+              ln: lastName,
+              ph: values.phone,
+            },
           })
 
           sendFacebookTracking({
