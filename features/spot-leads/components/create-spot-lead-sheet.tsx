@@ -62,12 +62,21 @@ export const CreateSpotLeadSheet = () => {
 
       const eventId = nanoid()
 
+      const phone = values.phone.replace(/\D/g, '')?.trim()
+      const lastName = values.name.split(' ')[1]?.toLowerCase()?.trim()
+      const firstName = values.name.split(' ')[0]?.toLowerCase()?.trim()
+
       mutate(values, {
         onSuccess: () => {
           facebookPixelEvent({
             eventId,
             eventName: 'Lead',
             trackType: 'track',
+            extraData: {
+              ph: phone,
+              ln: lastName,
+              fn: firstName,
+            },
           })
 
           sendFacebookTracking({

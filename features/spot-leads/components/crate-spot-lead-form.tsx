@@ -49,10 +49,9 @@ export const CreateSpotLeadForm = () => {
 
       const eventId = nanoid()
 
-      const firstName = values.name.split(' ')[0]?.toLowerCase()?.trim()
-      const lastName = values.name.split(' ')[1]?.toLowerCase()?.trim()
-
       const phone = values.phone.replace(/\D/g, '')?.trim()
+      const lastName = values.name.split(' ')[1]?.toLowerCase()?.trim()
+      const firstName = values.name.split(' ')[0]?.toLowerCase()?.trim()
 
       mutate(values, {
         onSuccess: () => {
