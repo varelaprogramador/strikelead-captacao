@@ -52,6 +52,8 @@ export const CreateSpotLeadForm = () => {
       const firstName = values.name.split(' ')[0]?.toLowerCase()?.trim()
       const lastName = values.name.split(' ')[1]?.toLowerCase()?.trim()
 
+      const phone = values.phone.replace(/\D/g, '')?.trim()
+
       mutate(values, {
         onSuccess: () => {
           facebookPixelEvent({
@@ -59,9 +61,9 @@ export const CreateSpotLeadForm = () => {
             eventName: 'Lead',
             trackType: 'track',
             extraData: {
-              fn: firstName,
+              ph: phone,
               ln: lastName,
-              ph: values.phone,
+              fn: firstName,
             },
           })
 
