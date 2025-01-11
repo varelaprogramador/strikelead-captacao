@@ -28,7 +28,7 @@ export default function Page() {
     }, 100)
 
     const timeout = setTimeout(() => {
-      window.location.href = 'https://chat.whatsapp.com/LSDr3QLOclGCwe20IwJrqV'
+      window.location.href = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_LINK!
     }, 5000)
 
     return () => {
@@ -66,7 +66,7 @@ export default function Page() {
               <Link
                 rel="noopener noreferrer"
                 referrerPolicy="no-referrer"
-                href="https://chat.whatsapp.com/LSDr3QLOclGCwe20IwJrqV"
+                href={process.env.NEXT_PUBLIC_WHATSAPP_GROUP_LINK!}
               >
                 Entrar no Grupo VIP
               </Link>
