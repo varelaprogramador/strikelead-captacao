@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { IoIosCloseCircle, IoIosCheckmarkCircle } from 'react-icons/io'
 
-import logo from '@/public/logo.svg'
+import logo from '@/public/logo.webp'
 import Video from './_components/video'
 import tagsImage from '@/public/tags.jpg'
 import lottieForm from '@/public/lottie/lottie-form.json'
@@ -16,6 +16,7 @@ import testimonial04 from '@/public/testimonials/depoimento4.png'
 import { LeadFormButton } from './_components/lead-form-button'
 import { CreateSpotLeadSheet } from '@/features/spot-leads/components/create-spot-lead-sheet'
 import { CreateSpotLeadForm } from '@/features/spot-leads/components/crate-spot-lead-form'
+import { Badge } from 'lucide-react'
 
 export default function Page() {
   return (
@@ -25,7 +26,7 @@ export default function Page() {
           <h2 className="text-center text-lg font-bold leading-tight md:text-2xl">
             🔥{' '}
             <strong className="text-[#921fee]">
-              Garanta O typeform Brasileiro com Acesso Eterno!
+              Garanta O Gerenciador de Projetos Brasileiro com Acesso Eterno!
             </strong>
           </h2>
 
@@ -40,31 +41,29 @@ export default function Page() {
             draggable={false}
             className="pointer-events-none max-h-14 w-full select-none object-contain"
           />
-
           <h2 className="max-w-4xl px-4 text-center text-base font-normal leading-tight md:text-[1.5rem]">
-            <strong>Não pague mais typeform em dólar! </strong>
+            <strong>Não pague mais ClickUp em dólar! </strong>
             <strong className="text-[#921fee]">
-              Conquiste novos Leads Qualificados de forma eficiente por um preço
+              Gerencie seus projetos e equipes de forma eficiente por um preço
               justo!
             </strong>
           </h2>
-
-          <h2 className="text-center text-xs md:text-[1.25rem]">
-            Relatórios em tempo real da sua audiência!
-          </h2>
-
-          <Video src="/main-video.mp4" />
-
+          <div className="flex items-center justify-center gap-4 md:gap-8">
+            <span className="min-h-[10px] min-w-[10px] animate-pulse rounded-md bg-green-500"></span>
+            <h2 className="text-center text-xs md:text-[1.25rem]">
+              Notificação no whatsapp em tempo real{' '}
+            </h2>
+            <span className="min-h-[10px] min-w-[10px] animate-pulse rounded-md bg-green-500"></span>
+          </div>{' '}
+          <Video src="/main-video2.mp4" />
           <div className="space-y-2 text-center">
             <p className="text-md font-bold">Suporte 24h via whatsapp</p>
 
             <ul className="font-semibold text-[#921fee]">
               <li>+ Grupo de networking</li>
-              <li>+ Integração com make</li>
-              <li>+ Notificações de novos lead</li>
+              <li>+ Notificações em tempo real</li>
             </ul>
           </div>
-
           <div className="flex items-center justify-center">
             <CreateSpotLeadForm />
           </div>
@@ -78,10 +77,11 @@ export default function Page() {
 
             <div className="space-y-4 text-center md:space-y-6 md:text-left">
               <h2 className="text-lg font-bold leading-tight md:text-xl">
-                Você tem ideia do trabalho que dá para concretizar uma venda no
-                mundo digital? Imagine precisar de 100 leads apenas para
-                concretizar uma única venda. Essa realidade pode ser
-                extremamente desafiadora e desanimadora para muitos.
+                Você tem ideia do trabalho que dá para gerenciar múltiplos
+                projetos e equipes no mundo digital? Imagine precisar alternar
+                entre 5 ferramentas diferentes apenas para manter seus projetos
+                organizados. Essa realidade pode ser extremamente desafiadora e
+                improdutiva para muitas empresas
               </h2>
 
               <p className="leading-tight text-[#b6b6b6]">
@@ -94,24 +94,27 @@ export default function Page() {
                 <strong className="text-[#921fee]">
                   Nossas Funcionalidades
                 </strong>{' '}
-                - O CRM que mais entrega, sendo o mais acessível do mercado.
+                - O Gerenciador de Projetos mais completo, sendo o mais
+                acessível do mercado.
               </h2>
 
               <p className="leading-tight text-[#b6b6b6]">
-                1- Faça gestão dos seus Leads e crie formulários dinâmicos.
+                1- Faça gestão de projetos com uma dshboard super intuitiva.
               </p>
 
               <Image
                 unoptimized
                 draggable={false}
-                src={functionalityGif}
+                width={700}
+                height={400}
+                src={'/gif/dash-int.gif'}
                 alt="Funcionalidades SpotForm"
                 className="pointer-events-none mx-auto w-full max-w-[500px] select-none rounded-md object-contain shadow-sm md:mx-0"
               />
 
               <p className="leading-tight text-[#b6b6b6]">
-                2- Código pixel, rastreamento Google, Redirecionamento rápido
-                para WhatsApp.
+                2- Dashboards personalizados, métricas em tempo real, e
+                integração com ferramentas populares
               </p>
 
               <Image
@@ -123,8 +126,8 @@ export default function Page() {
               />
 
               <p className="leading-tight text-[#b6b6b6]">
-                3- Faça gestão dos seus leads e classifique sua audiência com
-                tags personalizadas
+                3- Organize suas equipes e classifique tarefas com tags
+                personalizadas
               </p>
 
               <Image
@@ -140,33 +143,6 @@ export default function Page() {
 
         <section className="flex items-center justify-center bg-[#170c20] px-4 py-6 md:py-12">
           <div className="flex max-w-[78.125rem] flex-col items-center justify-center gap-4 md:gap-8">
-            <h2 className="text-balance text-lg font-bold leading-tight md:text-2xl">
-              DEPOIMENTO DE NOSSOS CLIENTES PILOTO
-            </h2>
-
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {Array.from({ length: 4 }).map((_, index) => {
-                const testimonials = [
-                  testimonial01,
-                  testimonial02,
-                  testimonial03,
-                  testimonial04,
-                ]
-
-                return (
-                  <div key={index}>
-                    <Image
-                      priority
-                      draggable={false}
-                      src={testimonials[index]}
-                      alt={`Depoimento ${index + 1}`}
-                      className="pointer-events-none mx-auto select-none object-contain drop-shadow-sm"
-                    />
-                  </div>
-                )
-              })}
-            </div>
-
             <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
               <div className="mx-auto max-w-[300px]">
                 <LottieAnimation animationData={lottieForm} />
@@ -174,24 +150,16 @@ export default function Page() {
 
               <div className="space-y-4 text-center md:space-y-6 md:text-left">
                 <h2 className="text-balance text-lg font-bold leading-tight md:text-2xl">
-                  O ÚNICO Formulário baseado concorrente do Typeform, Blip, RD
-                  Station com BAIXO CUSTO e alta qualidade.
+                  O ÚNICO Sistema de Gestão de Projetos concorrente do ClickUp,
+                  Asana, Monday com BAIXO CUSTO e alta performance.
                 </h2>
 
                 <p className="leading-tight text-[#b6b6b6]">
-                  Com certeza você já viu algumas plataformas que criam
-                  formulários, mas que cobram de você uma mensalidade alta por
-                  mês e ainda por cima limita a quantidade de formulários e
-                  respostas de leads.
-                </p>
-
-                <p className="leading-tight text-[#b6b6b6]">
-                  Aqui você poderá: Criar formulários ilimitados e receber
-                  quantos leads quiser.
-                </p>
-
-                <p className="leading-tight text-[#b6b6b6]">
-                  Além de <strong>SUPER QUALIFICAR SEUS LEADS</strong>
+                  Chega de pagar caro por ferramentas de gestão de projetos! O
+                  StrikeLead combina todas as funcionalidades que você ama no
+                  ClickUp, Asana e Monday, com um diferencial: custo acessível,
+                  alta performance e facilidade de uso. Simplifique sua gestão,
+                  maximize sua produtividade e economize agora mesmo!
                 </p>
               </div>
             </div>
@@ -201,14 +169,14 @@ export default function Page() {
                 <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-[#930000] bg-[#5b0c0c] p-6 text-center text-[#e41326]">
                   <IoIosCloseCircle className="size-8" />
                   <p className="font-bold">
-                    Você não terá custo por formulário
+                    Você não terá custo por conta de usuários
                   </p>
                 </div>
 
                 <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-[#930000] bg-[#5b0c0c] p-6 text-center text-[#e41326]">
                   <IoIosCloseCircle className="size-8" />
                   <p className="font-bold">
-                    Não ficará limitado na criação de novos formulários
+                    Não ficará limitado na criação de novos workspaces
                   </p>
                 </div>
               </div>
@@ -217,14 +185,14 @@ export default function Page() {
                 <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-[#196024] bg-[#14541e] p-6 text-center text-[#14df33]">
                   <IoIosCheckmarkCircle className="size-8" />
                   <p className="font-bold">
-                    Poderá utilizar o formulários com quantos Clientes quiser
+                    Poderá utilizar seus projetos com quantos Clientes quiser
                   </p>
                 </div>
 
                 <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-[#196024] bg-[#14541e] p-6 text-center text-[#14df33]">
                   <IoIosCheckmarkCircle className="size-8" />
                   <p className="font-bold">
-                    Poderá gerir todos seus leads em 1 lugar
+                    Poderá gerir todos seu time em um só lugar
                   </p>
                 </div>
 
