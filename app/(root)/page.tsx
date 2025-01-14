@@ -3,9 +3,9 @@ import { IoIosCloseCircle, IoIosCheckmarkCircle } from 'react-icons/io'
 
 import logo from '@/public/logo.webp'
 import Video from './_components/video'
-import tagsImage from '@/public/tags.jpg'
+import tagsEsteira from '@/public/gif/tags-esteira.gif'
 import lottieForm from '@/public/lottie/lottie-form.json'
-import traqueamentoImage from '@/public/traqueamento.jpg'
+import notificaImage from '@/public/card-2.gif'
 import lottieLeads from '@/public/lottie/lottie-leads.json'
 import functionalityGif from '@/public/gif/functionality.gif'
 import { LottieAnimation } from '@/components/lottie-animation'
@@ -84,12 +84,6 @@ export default function Page() {
                 improdutiva para muitas empresas
               </h2>
 
-              <p className="leading-tight text-[#b6b6b6]">
-                Imagine filtrar seus clientes e trazer somente quem realmente
-                tem interesse no seu produto? é exatamente isso que você poderá
-                fazer com o SpotForm.
-              </p>
-
               <h2 className="text-lg font-bold leading-tight md:text-xl">
                 <strong className="text-[#921fee]">
                   Nossas Funcionalidades
@@ -113,26 +107,25 @@ export default function Page() {
               />
 
               <p className="leading-tight text-[#b6b6b6]">
-                2- Dashboards personalizados, métricas em tempo real, e
-                integração com ferramentas populares
+                2- Notificação em tempo real para o seu whatsapp.
               </p>
 
               <Image
                 priority
                 draggable={false}
-                src={traqueamentoImage}
+                src={notificaImage}
                 alt="Rastreamento: Facebook Pixel, Google Analytics, Redirecionamento WhatsApp"
                 className="pointer-events-none mx-auto w-full max-w-[500px] select-none rounded-md object-contain shadow-sm md:mx-0"
               />
 
               <p className="leading-tight text-[#b6b6b6]">
-                3- Organize suas equipes e classifique tarefas com tags
-                personalizadas
+                3- Organize suas equipes e classifique tarefas com tags ou nivel
+                de esteira diferentes
               </p>
 
               <Image
                 priority
-                src={tagsImage}
+                src={tagsEsteira}
                 draggable={false}
                 alt="Tags personalizadas"
                 className="pointer-events-none mx-auto w-full max-w-[500px] select-none rounded-md object-contain shadow-sm md:mx-0"
