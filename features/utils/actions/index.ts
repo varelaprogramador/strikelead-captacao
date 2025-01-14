@@ -36,8 +36,8 @@ export const sendFacebookTracking = async ({
   try {
     const { ip, location, userAgent } = await requestLocationAndBrowser()
 
-    const fbp = cookieStore.get('_fbp')?.value
-    const fbc = cookieStore.get('_fbc')?.value
+    const fbp = (await cookieStore).get('_fbp')?.value
+    const fbc = (await cookieStore).get('_fbc')?.value
 
     const firstName = name?.split(' ')[0]?.toLowerCase()?.trim()
     const lastName = name?.split(' ')[1]?.toLowerCase()?.trim()
@@ -129,13 +129,14 @@ export const requestLocationAndBrowser = async () => {
   const header = headers()
 
   const parser = new UAParser()
-  const browser = header.get('user-agent')
+  const browser = (await header).get('user-agent')
 
   if (browser) {
     parser.setUA(browser)
   }
 
-  let ip = header.get('x-real-ip') || header.get('x-forwarded-for')
+  let ip =
+    (await header).get('x-real-ip') || (await header).get('x-forwarded-for')
 
   if (process.env.NODE_ENV === 'development') {
     ip = '::1'
@@ -148,6 +149,6 @@ export const requestLocationAndBrowser = async () => {
     location: address,
     os: parser.getOS().name,
     browser: parser.getBrowser().name,
-    userAgent: header.get('user-agent'),
+    userAgent: (await header).get('user-agent'),
   }
 }
