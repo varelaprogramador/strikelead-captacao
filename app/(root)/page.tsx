@@ -7,16 +7,10 @@ import tagsEsteira from '@/public/gif/tags-esteira.gif'
 import lottieForm from '@/public/lottie/lottie-form.json'
 import notificaImage from '@/public/card-2.gif'
 import lottieLeads from '@/public/lottie/lottie-leads.json'
-import functionalityGif from '@/public/gif/functionality.gif'
 import { LottieAnimation } from '@/components/lottie-animation'
-import testimonial01 from '@/public/testimonials/depoimento1.png'
-import testimonial02 from '@/public/testimonials/depoimento2.png'
-import testimonial03 from '@/public/testimonials/depoimento3.png'
-import testimonial04 from '@/public/testimonials/depoimento4.png'
 import { LeadFormButton } from './_components/lead-form-button'
 import { CreateSpotLeadSheet } from '@/features/spot-leads/components/create-spot-lead-sheet'
 import { CreateSpotLeadForm } from '@/features/spot-leads/components/crate-spot-lead-form'
-import { Badge } from 'lucide-react'
 
 export default function Page() {
   return (
