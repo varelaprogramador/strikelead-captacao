@@ -1,6 +1,5 @@
 import './globals.css'
 
-import Script from 'next/script'
 import type { Metadata } from 'next'
 import { Sora } from 'next/font/google'
 
