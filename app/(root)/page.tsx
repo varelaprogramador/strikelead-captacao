@@ -4,10 +4,9 @@ import { IoIosCloseCircle, IoIosCheckmarkCircle } from 'react-icons/io'
 import logo from '@/public/logo.webp'
 import Video from './_components/video'
 import tagsEsteira from '@/public/gif/tags-esteira.gif'
-import lottieForm from '@/public/lottie/lottie-form.json'
+
 import notificaImage from '@/public/card-2.gif'
-import lottieLeads from '@/public/lottie/lottie-leads.json'
-import { LottieAnimation } from '@/components/lottie-animation'
+
 import { LeadFormButton } from './_components/lead-form-button'
 import { CreateSpotLeadSheet } from '@/features/spot-leads/components/create-spot-lead-sheet'
 import { CreateSpotLeadForm } from '@/features/spot-leads/components/crate-spot-lead-form'
@@ -59,15 +58,13 @@ export default function Page() {
             </ul>
           </div>
           <div className="flex items-center justify-center">
-            <CreateSpotLeadForm />
+            {/* <CreateSpotLeadForm /> */}
           </div>
         </section>
 
         <section className="flex items-center justify-center bg-[#0c0c0c] px-4 py-6">
           <div className="flex max-w-[78.125rem] flex-col gap-4 md:flex-row md:gap-8">
-            <div className="mx-auto w-full max-w-[432px]">
-              <LottieAnimation animationData={lottieLeads} />
-            </div>
+            <div className="mx-auto w-full max-w-[432px]"></div>
 
             <div className="space-y-4 text-center md:space-y-6 md:text-left">
               <h2 className="text-lg font-bold leading-tight md:text-xl">
@@ -131,9 +128,7 @@ export default function Page() {
         <section className="flex items-center justify-center bg-[#170c20] px-4 py-6 md:py-12">
           <div className="flex max-w-[78.125rem] flex-col items-center justify-center gap-4 md:gap-8">
             <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
-              <div className="mx-auto max-w-[300px]">
-                <LottieAnimation animationData={lottieForm} />
-              </div>
+              <div className="mx-auto max-w-[300px]"></div>
 
               <div className="space-y-4 text-center md:space-y-6 md:text-left">
                 <h2 className="text-balance text-lg font-bold leading-tight md:text-2xl">
@@ -200,8 +195,8 @@ export default function Page() {
           </div>
         </section>
       </main>
-
-      <CreateSpotLeadSheet />
+      {/*
+      <CreateSpotLeadSheet />*/}
     </>
   )
 }
