@@ -4,7 +4,6 @@ import Script from 'next/script'
 import type { Metadata } from 'next'
 import { Sora } from 'next/font/google'
 
-import { CrispChat } from '@/components/crisp'
 import { Toaster } from '@/components/ui/sonner'
 import { QueryProvider } from '@/providers/query-provider'
 
@@ -53,7 +52,7 @@ export default function RootLayout({
       <body className="flex size-full min-h-dvh flex-col overflow-x-hidden antialiased">
         <QueryProvider>
           <Toaster richColors closeButton position="top-center" />
-          <CrispChat />
+
           {children}
         </QueryProvider>
       </body>
