@@ -58,7 +58,7 @@ export default function Page() {
             </ul>
           </div>
           <div className="flex items-center justify-center">
-            {/* <CreateSpotLeadForm /> */}
+            <CreateSpotLeadForm />
           </div>
         </section>
 
@@ -195,8 +195,8 @@ export default function Page() {
           </div>
         </section>
       </main>
-      {/*
-      <CreateSpotLeadSheet />*/}
+
+      <CreateSpotLeadSheet />
     </>
   )
 }
