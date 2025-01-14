@@ -5,7 +5,6 @@ import { Sora } from 'next/font/google'
 
 import { Toaster } from '@/components/ui/sonner'
 import { QueryProvider } from '@/providers/query-provider'
-import dynamic from 'next/dynamic'
 
 export const metadata: Metadata = {
   title: 'Captação | SpotForm',
@@ -24,12 +23,6 @@ export const metadata: Metadata = {
 
 const sora = Sora({ subsets: ['latin'] })
 
-// Dynamically import the Facebook Pixel script
-const FacebookPixelScript = dynamic(
-  () => import('@/components/FacebookPixel'),
-  { ssr: false }, // Disable server-side rendering for this component
-)
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +33,7 @@ export default function RootLayout({
       <body className="flex size-full min-h-dvh flex-col overflow-x-hidden antialiased">
         <QueryProvider>
           <Toaster richColors closeButton position="top-center" />
-          <FacebookPixelScript />{' '}
+
           {/* This will be rendered only on the client side */}
           {children}
         </QueryProvider>
