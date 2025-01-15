@@ -84,7 +84,7 @@ export default function Page() {
               </h2>
 
               <p className="leading-tight text-[#b6b6b6]">
-                1- Faça gestão de projetos com uma dshboard super intuitiva.
+                1- Faça gestão de projetos com uma dashboard super intuitiva.
               </p>
 
               <Image
