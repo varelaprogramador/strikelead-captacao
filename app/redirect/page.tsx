@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-import logo from '@/public/logo.svg'
+import logo from '@/public/logo.webp'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 
