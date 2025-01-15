@@ -9,7 +9,7 @@ import notificaImage from '@/public/card-2.gif'
 
 import { LeadFormButton } from './_components/lead-form-button'
 import { CreateSpotLeadSheet } from '@/features/spot-leads/components/create-spot-lead-sheet'
-import { CreateSpotLeadForm } from '@/features/spot-leads/components/crate-spot-lead-form'
+import { CreateSpotLeadForm } from '@/features/spot-leads/components/create-spot-lead-form'
 
 export default function Page() {
   return (

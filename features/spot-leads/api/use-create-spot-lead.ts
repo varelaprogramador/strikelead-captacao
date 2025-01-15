@@ -8,9 +8,9 @@ import { createSpotLeadSchema } from '../schemas'
 export function useCreateSpotLead() {
   const mutation = useMutation({
     mutationFn: async (values: z.infer<typeof createSpotLeadSchema>) => {
-      await api.post('/spot-leads/create', {
+      await api.post('https://www.spotform.com.br/spot-leads/create', {
         ...values,
-        origin: 'Captação 2',
+        origin: 'StrikeLead',
       })
       return
     },
