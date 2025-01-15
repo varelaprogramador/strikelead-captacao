@@ -28,7 +28,9 @@ export default function Page() {
     }, 100)
 
     const timeout = setTimeout(() => {
-      window.location.href = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_LINK!
+      window.location.href =
+        process.env.NEXT_PUBLIC_WHATSAPP_GROUP_LINK ||
+        'https://chat.whatsapp.com/BAzL5MUynbTH718GPKU9kb'
     }, 5000)
 
     return () => {
@@ -39,16 +41,15 @@ export default function Page() {
 
   return (
     <main className="flex flex-1 flex-col items-center justify-center gap-4 bg-black p-4">
-      <Image
-        priority
-        src={logo}
-        alt="Spotform"
-        draggable={false}
-        className="pointer-events-none max-h-12 w-full animate-pulse select-none object-contain"
-      />
-
       <Card className="max-w-screen-sm text-center">
         <CardHeader>
+          <Image
+            priority
+            src={logo}
+            alt="Spotform"
+            draggable={false}
+            className="pointer-events-none max-h-12 w-full animate-pulse select-none rounded-md object-contain"
+          />
           <CardTitle>Redirecionando...</CardTitle>
           <CardDescription>
             Em 5 segundos você será redirecionado para o grupo de WhatsApp.
