@@ -10,7 +10,7 @@ import { QueryProvider } from '@/providers/query-provider'
 export const metadata: Metadata = {
   title: 'Captação | Strikelead',
   description: 'Pagina de captação de leads',
-  metadataBase: new URL('https://www.captacao2.spotform.com.br'),
+  metadataBase: new URL('https://www.captacao.strikelead.com.br'),
   alternates: {
     canonical: './',
   },
