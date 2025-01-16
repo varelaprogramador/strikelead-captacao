@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { facebookPixelEvent } from '@/lib/utils'
 import { PhoneInput } from '@/components/phone-input'
@@ -50,8 +49,6 @@ export const CreateSpotLeadForm = () => {
       const eventId = nanoid()
 
       const phone = values.phone.replace(/\D/g, '')?.trim()
-      const lastName = values.name.split(' ')[1]?.toLowerCase()?.trim()
-      const firstName = values.name.split(' ')[0]?.toLowerCase()?.trim()
 
       mutate(values, {
         onSuccess: () => {
@@ -61,15 +58,12 @@ export const CreateSpotLeadForm = () => {
             trackType: 'track',
             extraData: {
               ph: phone,
-              ln: lastName,
-              fn: firstName,
             },
           })
 
           sendFacebookTracking({
             eventId,
             eventName: 'Lead',
-            name: values.name,
             phone: values.phone,
           })
 
@@ -93,22 +87,6 @@ export const CreateSpotLeadForm = () => {
       <CardContent>
         <Form {...form}>
           <form className="space-y-4" onSubmit={onSubmit}>
-            <FormField
-              name="name"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Nome</FormLabel>
-
-                  <FormControl>
-                    <Input {...field} placeholder="Seu nome" />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <FormField
               name="phone"
               control={form.control}
