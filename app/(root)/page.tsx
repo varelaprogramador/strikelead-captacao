@@ -58,7 +58,7 @@ export default function Page() {
             </ul>
           </div>
           <div className="flex items-center justify-center">
-            <CreateSpotLeadForm />
+            <LeadFormButton title="Entrar no grupo vip" />
           </div>
         </section>
 
