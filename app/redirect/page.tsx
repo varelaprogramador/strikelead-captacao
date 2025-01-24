@@ -30,7 +30,7 @@ export default function Page() {
     const timeout = setTimeout(() => {
       window.location.href =
         process.env.NEXT_PUBLIC_WHATSAPP_GROUP_LINK ||
-        'https://chat.whatsapp.com/BAzL5MUynbTH718GPKU9kb'
+        'https://chat.whatsapp.com/BqYKczwWYfL5UnLjWLQete'
     }, 5000)
 
     return () => {
